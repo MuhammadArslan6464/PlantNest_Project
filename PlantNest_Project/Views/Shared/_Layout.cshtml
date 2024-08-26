@@ -1,0 +1,317 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>PlantNest - Gardening</title>
+
+    <link rel="icon" href="~/assets/img/core-img/favicon.ico">
+
+    <link rel="stylesheet" href="~/assets/style.css">
+    <style>
+        .search-form {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            padding: 20px;
+            color: #fff;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .search-form.active {
+                display: flex;
+            }
+
+            .search-form input[type="search"],
+            .search-form select {
+                margin-bottom: 10px;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+            }
+
+            .search-form button {
+                background-color: #fff;
+                color: #000;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+        .closeIcon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            color: #fff;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-circle"></div>
+        <div class="preloader-img">
+            <img src="~/assets/img/core-img/leaf.png" alt="">
+        </div>
+    </div>
+
+    <!--  Header Area Start  -->
+    <header class="header-area">
+
+
+
+        <!-- ***** Navbar Area ***** -->
+        <div class="alazea-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+
+                    <nav class="classy-navbar justify-content-between" id="alazeaNav">
+
+                        <a href="@Url.Action("Index", "Home")" class="nav-brand"><img src="~/assets/img/core-img/logo.png" alt=""></a>
+
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <div class="classy-menu">
+
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                                    <li>
+                                        <a href="Plant.html">Plant Category</a>
+                                        <ul class="dropdown">
+                                            <li><a href="@Url.Action("Flowering", "Home")">Flowering</a></li>
+                                            <li><a href="@Url.Action("NonFlowering", "Home")">Non Flowering </a></li>
+                                            <li><a href="@Url.Action("Indoor", "Home")">Indoor</a></li>
+                                            <li><a href="@Url.Action("Outdoor", "Home")">Outdoor</a></li>
+                                            <li><a href="@Url.Action("Succulents", "Home")">Succulents</a></li>
+                                            <li><a href="@Url.Action("Medicinal", "Home")">Medicinal</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="@Url.Action("ContactUs", "Home")">Contact</a></li>
+
+
+                                    <li>
+                                        <a href="@Url.Action("Cart", "Home")">
+                                            Cart
+                                        </a>
+                                    </li>
+                                    <li>@Html.ActionLink("Feedback", "Create", "Home")</li>
+
+                                    @if (Session["u"] != null)
+                                    {
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                @Session["u"]
+                                            </a>
+                                            <ul class="dropdown">
+                                                <li><a href="@Url.Action("ManageProfile", "Home")">Manage Profile</a></li>
+                                                <li>
+                                                    <a href="#" onclick="confirmDeleteAccount()" class="nav-link">Delete Account</a>
+                                                </li>
+
+
+                                            </ul>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="@((ViewBag.ActivePage == "Login") ? "active" : "")">
+                                            <a href="@Url.Action("Login", "Home")">Login</a>
+                                        </li>
+                                    }
+                                </ul>
+
+                                <div id="searchIcon">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </div>
+
+                            </div>
+                            <!-- Navbar End -->
+                        </div>
+                    </nav>
+
+                    <!-- Search Form -->
+                    <div class="search-form">
+                        <form id="searchForm" action="/Home/Search" method="get">
+                            <input type="text" name="category" id="category" placeholder="Enter category" class="form-control">
+                            <button type="submit" id="searchButton" class="btn btn-primary">Search</button>
+                        </form>
+
+                        <!-- Close Icon -->
+                        <div class="closeIcon"><i class="fa fa-times" aria-hidden="true"></i></div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--  Header Area End -->
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    <!--  Footer Area Start  -->
+    <footer class="footer-area bg-img" style="background-image: url('@Url.Content("~/assets/img/bg-img/3.jpg")');">
+
+        <div class="main-footer-area">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="single-footer-widget">
+                            <div class="footer-logo mb-30">
+                                <a href="@Url.Action("Index", "Home")"><img src="~/assets/img/core-img/logo.png" alt=""></a>
+                            </div>
+                            <p>Lorem ipsum dolor sit samet, consectetur adipiscing elit. India situs atione mantor</p>
+                            <div class="social-info">
+                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Single Footer Widget -->
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="single-footer-widget">
+                            <div class="widget-title">
+                                <h5>QUICK LINK</h5>
+                            </div>
+                            <nav class="widget-nav">
+                                <ul>
+                                    <li><a href="#">Purchase</a></li>
+                                    <li><a href="#">FAQs</a></li>
+                                    <li><a href="#">Payment</a></li>
+                                    <li><a href="#">News</a></li>
+                                    <li><a href="#">Return</a></li>
+                                    <li><a href="#">Advertise</a></li>
+                                    <li><a href="#">Shipping</a></li>
+                                    <li><a href="#">Career</a></li>
+                                    <li><a href="#">Orders</a></li>
+                                    <li><a href="#">Policities</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="single-footer-widget">
+                            <div class="widget-title">
+                                <h5>CONTACT</h5>
+                            </div>
+
+                            <div class="contact-information">
+                                <p><span>Address:</span> Johr Town Lahore</p>
+                                <p><span>Phone:</span> +92 234 122 122</p>
+                                <p><span>Email:</span> info.deercreative@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="border-line"></div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="copywrite-text">
+                            <p>
+                                &copy;
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Arslan</a>
+
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--  Footer Area End -->
+    <!--  All Javascript Files  -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="~/assets/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="~/assets/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="~/assets/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="~/assets/js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="~/assets/js/active.js"></script>
+
+    <script type="text/javascript">
+    function confirmDeleteAccount() {
+        if (confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+            window.location.href = '@Url.Action("DeleteAccount", "Home")';
+        }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+    const searchIcon = document.getElementById('searchIcon');
+    const closeIcon = document.querySelector('.closeIcon');
+    const searchButton = document.getElementById('searchButton');
+    const searchForm = document.getElementById('searchForm');
+
+    searchIcon.addEventListener('click', function () {
+        document.querySelector('.search-form').classList.add('active');
+    });
+
+    closeIcon.addEventListener('click', function () {
+        document.querySelector('.search-form').classList.remove('active');
+    });
+
+    searchButton.addEventListener('click', function () {
+        searchPlants();
+    });
+
+    searchForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        searchPlants();
+    });
+
+    function searchPlants() {
+        const searchValue = document.getElementById('category').value.trim();
+
+        const queryString = new URLSearchParams({
+            category: searchValue
+        }).toString();
+
+        window.location.href = `@Url.Action("Search", "Home")?${queryString}`;
+    }
+});
+
+    </script>
+
+</body>
+
+</html>

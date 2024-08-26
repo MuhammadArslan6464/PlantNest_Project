@@ -1,0 +1,108 @@
+﻿@{
+    ViewBag.Title = "Admin Dashboard";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="sticky-header header-section">
+    <div class="header-left">
+        <div class="profile_details_left">
+            <div class="clearfix"> </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+    <div class="header-right">
+        <div class="profile_details">
+            <ul>
+                <li class="dropdown profile_details_drop">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <div class="profile_img">
+                            <span class="prfil-img"><img src="~/Temp/images/2.jpg" alt=""> </span>
+                            <div class="user-name">
+                                <p>@Session["u"]</p>
+                                <span>Administrator</span>
+                            </div>
+                            <i class="fa fa-angle-down lnr"></i>
+                            <i class="fa fa-angle-up lnr"></i>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu drp-mnu">
+                        <li><a href="@Url.Action("MyAccount", "AdminPanel")"><i class="fa fa-user"></i> My Account</a></li>
+                        <li><a href="@Url.Action("Logout", "AdminPanel")"><i class="fa fa-sign-out"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+    <div class="clearfix"> </div>
+</div>
+<!-- //header-ends -->
+<!-- main content start-->
+<div id="page-wrapper">
+    <div class="main-page">
+        <h2 class="title1">Index</h2>
+        <div class="blank-page widget-shadow scroll" id="style-2 div1">
+
+            <!-- Dashboard Content -->
+            <div class="container mt-4">
+                <div class="row justify-content-center">
+                    <!-- Total Users -->
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <div class="dashboard-card bg-primary text-white p-2 rounded">
+                            <h5>Total Users</h5>
+                            <h3>@ViewBag.TotalUsers</h3>
+                            <i class="fa fa-users fa-2x"></i>
+                        </div>
+                    </div>
+
+                    <!-- Total Plants -->
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <div class="dashboard-card bg-success text-white p-2 rounded">
+                            <h5>Total Plants</h5>
+                            <h3>@ViewBag.TotalPlants</h3>
+                            <i class="fa fa-leaf fa-2x"></i>
+                        </div>
+                    </div>
+
+                    <!-- Total Accessories -->
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <div class="dashboard-card bg-info text-white p-2 rounded">
+                            <h5>Total Accessories</h5>
+                            <h3>@ViewBag.TotalAccessories</h3>
+                            <i class="fa fa-cogs fa-2x"></i>
+                        </div>
+                    </div>
+
+                   
+                </div>
+
+                <style>
+                    .dashboard-card {
+                        text-align: center;
+                        border: none;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        min-height: 120px;
+                        width: 80%; 
+                        max-width: 140px; 
+                        margin: 0 auto;
+                    }
+
+                        .dashboard-card h5 {
+                            margin-bottom: 5px;
+                            font-size: 1.1rem; 
+                        }
+
+                        .dashboard-card h3 {
+                            margin: 0;
+                            font-size: 1.5rem;
+                        }
+
+                        .dashboard-card i {
+                            margin-top: 10px;
+                        }
+                </style>
+            </div>
+        </div>
+    </div>
+</div>

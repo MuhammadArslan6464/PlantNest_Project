@@ -1,0 +1,130 @@
+﻿@model PlantNest_Project.Models.User
+
+@{
+    ViewBag.Title = "Manage Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumb-area">
+    <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url('@Url.Content("~/assets/img/bg-img/23.jpg")');">
+        <h2 class="text-white">Login</h2>
+    </div>
+</div>
+
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Update Your Profile</h2>
+
+    @using (Html.BeginForm("ManageProfile", "Home", FormMethod.Post, new { @class = "form-horizontal needs-validation", @novalidate = "novalidate" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group row mb-3">
+            @Html.LabelFor(m => m.Name, new { @class = "col-md-3 col-form-label" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Enter your name" })
+                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-3 col-form-label" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Enter your email" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            @Html.LabelFor(m => m.ContactNumber, new { @class = "col-md-3 col-form-label" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(m => m.ContactNumber, new { @class = "form-control", @placeholder = "Enter your contact number" })
+                @Html.ValidationMessageFor(m => m.ContactNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            @Html.LabelFor(m => m.Username, new { @class = "col-md-3 col-form-label" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @placeholder = "Enter your username" })
+                @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            @Html.Label("Current Password", new { @class = "col-md-3 col-form-label" })
+            <div class="col-md-9">
+                <input type="password" value="@Model.PasswordHash" class="form-control" readonly />
+                @Html.Hidden("CurrentPassword", Model.PasswordHash)
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            @Html.Label("New Password", new { @class = "col-md-3 col-form-label" })
+            <div class="col-md-9">
+                <input type="password" name="newPassword" class="form-control" placeholder="Enter a new password" />
+                @Html.ValidationMessage("newPassword", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            @Html.Label("Confirm New Password", new { @class = "col-md-3 col-form-label" })
+            <div class="col-md-9">
+                <input type="password" name="confirmPassword" class="form-control" placeholder="Confirm your new password" />
+                @Html.ValidationMessage("confirmPassword", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-9 offset-md-3">
+                <input type="submit" value="Update Profile" class="btn btn-primary btn-block" />
+            </div>
+        </div>
+    }
+
+    <div class="text-center mt-4">
+        @Html.ActionLink("Back to Profile", "ManageProfile", null, new { @class = "btn btn-secondary" })
+    </div>
+</div>
+
+<style>
+    .banner-area {
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 50px 0;
+        text-align: center;
+    }
+
+    .banner-content h2 {
+        font-size: 2.5em;
+        margin: 0;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+    input[type="submit"] {
+        width: 100%;
+    }
+
+    h2 {
+        font-family: 'Arial', sans-serif;
+        color: #333;
+    }
+
+    .text-center {
+        margin-top: 20px;
+    }
+</style>

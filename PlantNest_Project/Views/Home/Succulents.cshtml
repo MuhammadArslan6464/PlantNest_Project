@@ -1,0 +1,109 @@
+﻿@model IEnumerable<PlantNest_Project.Models.Plant>
+
+@{
+    ViewBag.Title = "Flowering Plants";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="breadcrumb-area">
+
+    <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url('@Url.Content("~/assets/img/bg-img/24.jpg")');">
+        <h2>Succulents</h2>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Non Flowering</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="new-arrivals-products-area bg-gray section-padding-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+               
+                <div class="section-heading text-center">
+                    <h2>NEW ARRIVALS</h2>
+                    <p>We have the latest products, it must be exciting for you</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-wrapper">
+            <div class="main-page">
+                <div class="blank-page widget-shadow scroll" id="style-2 div1">
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-md-4">
+                                <div class="plant-card">
+                                    <div class="plant-image">
+                                        <img src="@item.ImageURL" alt="Plant Image" />
+                                    </div>
+                                    <div class="plant-details">
+                                        <h4>@item.Name</h4>
+                                        <p>Price: $@item.Price</p>
+                                        <div class="btn-group">
+                                            <a href="@Url.Action("Details", "Home", new { id = item.PlantID })" class="btn btn-info">Detail</a>
+                                            <a href="@Url.Action("Buy", "Home", new { id = item.PlantID })" class="btn btn-success">Buy</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .plant-card {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 15px;
+        margin-bottom: 20px;
+        text-align: center;
+        background-color: #fff;
+    }
+
+    .plant-image {
+        height: 250px; 
+        overflow: hidden; 
+    }
+
+        .plant-image img {
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            border-radius: 4px;
+        }
+
+    .plant-details h4 {
+        margin-top: 10px;
+        font-size: 1.2em;
+    }
+
+    .plant-details p {
+        font-size: 1em;
+        color: #333;
+    }
+
+    .btn-group {
+        margin-top: 15px;
+    }
+
+    .btn {
+        margin: 5px;
+    }
+</style>

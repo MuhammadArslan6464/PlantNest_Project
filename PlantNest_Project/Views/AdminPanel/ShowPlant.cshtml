@@ -1,0 +1,120 @@
+﻿@model IEnumerable<PlantNest_Project.Models.Plant>
+
+@{
+    ViewBag.Title = "ShowPlant";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<div class="sticky-header header-section ">
+    <div class="header-left">
+        <div class="profile_details_left">
+            <div class="clearfix"> </div>
+        </div>
+
+        <div class="clearfix"> </div>
+    </div>
+    <div class="header-right">
+
+        <div class="profile_details">
+            <ul>
+                <li class="dropdown profile_details_drop">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <div class="profile_img">
+                            <span class="prfil-img"><img src="~/Temp/images/2.jpg" alt=""> </span>
+                            <div class="user-name">
+                                <p>@Session["u"]</p>
+                                <span>Administrator</span>
+                            </div>
+                            <i class="fa fa-angle-down lnr"></i>
+                            <i class="fa fa-angle-up lnr"></i>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="clearfix"> </div>
+    </div>
+    <div class="clearfix"> </div>
+</div>
+<!-- //header-ends -->
+<!-- main content start-->
+<div id="page-wrapper">
+    <div class="main-page">
+        <h2 class="title1">Index</h2>
+        <div class="blank-page widget-shadow scroll" id="style-2 div1">
+
+            <h2>ShowPlant</h2>
+
+            <p>
+                @Html.ActionLink("Create New", "CreatePlant")
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Species)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Discount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Category)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ImageURL)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Species)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Discount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Category)
+                        </td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.ImageURL))
+                            {
+                                <img src="@Url.Content(item.ImageURL)" alt="Plant Image" style="width:100px;height:100px;" />
+                            }
+                            else
+                            {
+                                <span>No Image</span>
+                            }
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "EditPlant", new { id = item.PlantID }) |
+                            @Html.ActionLink("Delete", "DeletePlant", new { id = item.PlantID })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>

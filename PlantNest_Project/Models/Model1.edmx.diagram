@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="54656c3ae4eb4fa59f9fe08bbe595a5c" Name="Diagram1" ZoomLevel="77">
+        <EntityTypeShape EntityType="PlantNestModel.Accessory" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlantNestModel.AdminLogin" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlantNestModel.Feedback" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlantNestModel.Order" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlantNestModel.Plant" Width="1.5" PointX="3.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlantNestModel.Review" Width="1.5" PointX="6" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlantNestModel.User" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="PlantNestModel.FK__Reviews__Accesso__1BC821DD" ManuallyRouted="false" />
+        <AssociationConnector Association="PlantNestModel.FK__Feedback__UserID__114A936A" ManuallyRouted="false" />
+        <AssociationConnector Association="PlantNestModel.FK__Orders__UserID__09A971A2" ManuallyRouted="false" />
+        <AssociationConnector Association="PlantNestModel.FK__Reviews__PlantID__1AD3FDA4" ManuallyRouted="false" />
+        <AssociationConnector Association="PlantNestModel.FK__Reviews__UserID__19DFD96B" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PlantNestModel.CartItem" Width="1.5" PointX="6" PointY="11.5" />
+        <AssociationConnector Association="PlantNestModel.FK_CartItems_Plants" />
+        <EntityTypeShape EntityType="PlantNestModel.Contact" Width="1.5" PointX="6.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

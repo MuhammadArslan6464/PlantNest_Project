@@ -1,0 +1,125 @@
+﻿@model PlantNest_Project.Models.Plant
+
+@{
+    ViewBag.Title = "DeletePlant";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<div class="sticky-header header-section ">
+    <div class="header-left">
+        <div class="profile_details_left">
+            <div class="clearfix"> </div>
+        </div>
+
+        <div class="clearfix"> </div>
+    </div>
+    <div class="header-right">
+
+        <div class="profile_details">
+            <ul>
+                <li class="dropdown profile_details_drop">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <div class="profile_img">
+                            <span class="prfil-img"><img src="~/Temp/images/2.jpg" alt=""> </span>
+                            <div class="user-name">
+                                <p>@Session["u"]</p>
+                                <span>Administrator</span>
+                            </div>
+                            <i class="fa fa-angle-down lnr"></i>
+                            <i class="fa fa-angle-up lnr"></i>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="clearfix"> </div>
+    </div>
+    <div class="clearfix"> </div>
+</div>
+<!-- //header-ends -->
+<!-- main content start-->
+<div id="page-wrapper">
+    <div class="main-page">
+        <h2 class="title1">Index</h2>
+        <div class="blank-page widget-shadow scroll" id="style-2 div1">
+
+            <h2>DeletePlant</h2>
+
+            <h3>Are you sure you want to delete this?</h3>
+            <div>
+                <h4>Plant</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Species)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Species)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Price)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Discount)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Discount)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Description)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Category)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Category)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ImageURL)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ImageURL)
+                    </dd>
+
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-default" /> |
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

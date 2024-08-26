@@ -1,0 +1,56 @@
+﻿@model IEnumerable<PlantNest_Project.Models.CartItem>
+
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Checkout</h2>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Plant</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.Plant?.ImageURL))
+                        {
+                            <img src="@item.Plant.ImageURL" alt="@item.Plant.Name" style="width: 100px; height: auto;" />
+                        }
+                        else
+                        {
+                            <img src="/path/to/default-image.jpg" alt="No Image" style="width: 100px; height: auto;" />
+                        }
+                    </td>
+                    <td>@item.Plant.Name</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.Plant.Price.ToString("C")</td>
+                    <td>@(item.Quantity * (item.Plant?.Price ?? 0))</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="text-right">
+        <h4>Total: @Model.Sum(i => i.Quantity * (i.Plant?.Price ?? 0)).ToString("C")</h4>
+    </div>
+
+    <div class="text-right mt-4">
+        <a href="@Url.Action("ConfirmOrder", "Home")" class="btn btn-success btn-lg">Confirm Order</a>
+    </div>
+}
+else
+{
+    <p>Your cart is empty.</p>
+}

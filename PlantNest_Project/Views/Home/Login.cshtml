@@ -1,0 +1,138 @@
+﻿@model PlantNest_Project.Models.User
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumb-area">
+    <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url('@Url.Content("~/assets/img/bg-img/23.jpg")');">
+        <h2 class="text-white">Login</h2>
+    </div>
+</div>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header text-center bg-success text-white">
+                    <h3>Login</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="nav nav-pills mb-3 text-center" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active btn btn-success" href="@Url.Action("Login", "Home")">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-success" href="@Url.Action("Register", "Home")">Register</a>
+                        </li>
+                    </ul>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "col-sm-12 col-form-label text-center" })
+                                <div class="col-sm-12">
+                                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.PasswordHash, htmlAttributes: new { @class = "col-sm-12 col-form-label text-center" })
+                                <div class="col-sm-12">
+                                    @Html.EditorFor(model => model.PasswordHash, new { htmlAttributes = new { @class = "form-control", type = "password" } })
+                                    @Html.ValidationMessageFor(model => model.PasswordHash, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-12 text-center">
+                                    <input type="submit" value="Login" class="btn btn-success btn-lg" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .breadcrumb-area {
+        margin-bottom: 20px;
+    }
+
+    .top-breadcrumb-area h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #fff;
+    }
+
+    .nav-pills {
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+        .nav-pills .nav-link {
+            border-radius: 0.25rem;
+            font-weight: 500;
+            margin: 0 5px;
+            color: #fff;
+        }
+
+            .nav-pills .nav-link.active,
+            .nav-pills .nav-link {
+                background-color: #28a745; 
+                border-color: #28a745;
+            }
+
+                .nav-pills .nav-link.active {
+                    background-color: #218838; 
+                    border-color: #1e7e34;
+                }
+
+    .card {
+        border: none;
+        border-radius: 0.5rem;
+    }
+
+    .card-header {
+        border-bottom: 1px solid #dee2e6;
+        background-color: #28a745; 
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+        color: #fff;
+    }
+
+        .btn-success:hover {
+            background-color: #218838; 
+            border-color: #1e7e34;
+        }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+
+    .form-group label {
+        font-weight: 600;
+    }
+
+    .form-horizontal .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+</style>
